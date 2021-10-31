@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  students_finder_db:
+    image: mysql:8.0.23
+    ports:
+      - '3306:3306'
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: students_finder
+      MYSQL_ROOT_PASSWORD: devisfuture
+    volumes:
+      - students_finder_db_data:/var/lib/mysql
+
+  students_finder:
+    build:
+      context: .
+      dockerfile: dev.dockerfile
+    ports:
+      - '8000:8000'
+      - '8001:8001'
+    command: npm run start:dev
+    env_file:
+      - .env
+    depends_on:
+      - students_finder_db
+    tty: true
+    volumes:
+    - .:/home/node/app
+
+volumes:
+  students_finder_db_data:
