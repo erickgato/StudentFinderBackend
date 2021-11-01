@@ -1,3 +1,4 @@
+import { Field, Int, ObjectType } from '@nestjs/graphql';
 import {
   BaseEntity,
   Column,
@@ -8,11 +9,13 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+@ObjectType()
 @Entity({
   name: 'students',
 })
 export class Student extends BaseEntity {
   @PrimaryGeneratedColumn()
+  @Field(() => Int)
   id: number;
 
   @Column({
@@ -21,6 +24,7 @@ export class Student extends BaseEntity {
     length: 250,
     nullable: true,
   })
+  @Field()
   name: string;
 
   @Column({
@@ -30,6 +34,7 @@ export class Student extends BaseEntity {
     nullable: true,
     unique: true,
   })
+  @Field()
   document: string;
 
   @Column({
@@ -38,6 +43,7 @@ export class Student extends BaseEntity {
     nullable: true,
     length: 250,
   })
+  @Field()
   email: string;
 
   @CreateDateColumn({
