@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { AppModule } from './modules/app.module';
 import { HttpStatus, ValidationPipe } from '@nestjs/common';
 import { Logger } from 'nestjs-pino';
 import * as helmet from 'helmet';
@@ -19,6 +19,6 @@ async function bootstrap() {
   app.use(helmet());
   await app.listen(port);
 
-  console.log('App:: listen on  port', port);
+  console.log('App:: listen on port', port);
 }
 bootstrap();
