@@ -54,4 +54,11 @@ export class Student extends BaseEntity {
     name: 'deleted_at',
   })
   deletedAt: Date;
+
+  constructor(name: string, document: string, email: string) {
+    super();
+    this.name = name;
+    this.document = document;
+    this.email = email;
+  }
 }
