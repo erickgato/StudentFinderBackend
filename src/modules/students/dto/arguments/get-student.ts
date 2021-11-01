@@ -5,6 +5,10 @@ export class GetStudentArgs {
   @Field({
     nullable: true,
   })
+  name?: string;
+  @Field({
+    nullable: true,
+  })
   document?: string;
   @Field({
     nullable: true,

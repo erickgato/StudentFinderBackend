@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { FindManyOptions, Repository } from 'typeorm';
 import { StudentEntity } from '../entities';
 
 @Injectable()
@@ -12,5 +12,9 @@ export class StudentService {
 
   async find() {
     return this.studentRepository.find();
+  }
+
+  async findByOptions(options: FindManyOptions<StudentEntity>) {
+    return this.studentRepository.find(options);
   }
 }
