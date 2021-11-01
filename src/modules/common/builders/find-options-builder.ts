@@ -21,7 +21,7 @@ export class FindOptionsBuilder<
     return this;
   }
   getOutput() {
-    return this.output;
+    return this.output || {};
   }
 
   /**

@@ -2,7 +2,7 @@ import { NotImplementedException } from '@nestjs/common';
 import * as _ from 'lodash';
 import { EnvAccessor } from '../interfaces/env-acessor';
 
-export abstract class BaseConfig implements EnvAccessor {
+export class BaseConfig implements EnvAccessor {
   constructor(private readonly env: Record<string, string>) {}
   /**
    * Obtêm uma variável de ambiente

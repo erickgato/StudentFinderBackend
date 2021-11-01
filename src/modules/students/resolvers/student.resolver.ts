@@ -1,6 +1,6 @@
 import { Args, Query, Resolver } from '@nestjs/graphql';
 import { thru } from 'lodash';
-import { FindOptionsBuilder } from 'src/modules/common/builders/find-options-builder';
+import { FindOptionsBuilder } from '../../common/builders/find-options-builder';
 import { ILike } from 'typeorm';
 import { GetStudentArgs } from '../dto/arguments/get-student';
 import { StudentEntity } from '../entities';
