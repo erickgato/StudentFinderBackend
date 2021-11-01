@@ -12,18 +12,25 @@ export class StudentResolver {
 
   @Query(() => [StudentEntity])
   async students(@Args() args: GetStudentArgs): Promise<StudentEntity[]> {
-    const options = thru(
-      new FindOptionsBuilder<StudentEntity, GetStudentArgs>(),
-      (builder) => {
-        builder.fill(args);
+    const builder = new FindOptionsBuilder<StudentEntity, GetStudentArgs>();
 
-        builder.where('name', () => ({
-          name: ILike(`%${args.name}%`),
-        }));
+    const options = thru(builder, (builder) => {
+      builder.fill(args);
 
-        return builder.getOutput();
-      },
-    );
+      builder.where('name', () => ({
+        name: ILike(`%${args.name}%`),
+      }));
+
+      builder.where('document', () => ({
+        document: args.document,
+      }));
+
+      builder.where('email', () => ({
+        email: ILike(`%${args.email}%`),
+      }));
+
+      return builder.getOutput();
+    });
 
     return this.studentsService.findByOptions(options);
   }
