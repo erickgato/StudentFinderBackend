@@ -22,7 +22,7 @@ export class StudentResolver {
       }));
 
       builder.where('document', () => ({
-        document: args.document,
+        document: ILike(`%${args.document}%`),
       }));
 
       builder.where('email', () => ({
@@ -31,6 +31,8 @@ export class StudentResolver {
 
       return builder.getOutput();
     });
+
+    console.log(options);
 
     return this.studentsService.findByOptions(options);
   }
